@@ -5,7 +5,8 @@
 #define PEDRA 0
 #define PAPEL 1
 #define TESOURA 2
-
+#define SPOCK 3
+#define LAGARTO 4
 /*
 Nesta primeira versC#o, vamos traduzir as regras da forma mais direta possC-vel.
 Usaremos ifs aninhados (um dentro do outro). A lC3gica C): primeiro, verificamos a escolha do jogador.
@@ -91,6 +92,30 @@ void versao_03() {
 	} while (jogar_novamente == 's' || jogar_novamente == 'S');
 
 }
+void versao_04() {
+    	int jogador, computador;
+	char jogar_novamente;
+	do {
+		printf("Escolha: 0 (Pedra), 1 (Papel), 2 (Tesoura),3 (Spock), 4 (Largat0): ");
+		scanf("%d", &jogador);
+		computador = rand() % 3; // Gera um nC:mero aleatC3rio entre 0 e 2
+		printf("Computador escolheu: %d\n", computador);
+		if (jogador == computador) {
+			printf("Empate!\n");
+		} else if ((jogador == PEDRA && computador == TESOURA) ||(jogador == PAPEL && computador == PEDRA) ||
+		           (jogador == TESOURA && computador == PAPEL) ||(jogador == PEDRA && computador == LAGARTO) ||
+		           (jogador == PAPEL && computador == SPOCK) ||(jogador == TESOURA && computador == LAGARTO) ||
+		           (jogador == LAGARTO && computador == SPOCK) ||(jogador == LAGARTO && computador == PAPEL) ||
+		           (jogador == SPOCK && computador == TESOURA) ||(jogador == SPOCK && computador == PEDRA)) {
+			printf("Jogador vence!\n");
+		} else {
+			printf("Computador vence!\n");
+		}
+		printf("Quer jogar novamente? (s/n): ");
+		scanf(" %c", &jogar_novamente);
+	} while (jogar_novamente == 's' || jogar_novamente == 'S');
+    
+}
 void versao_05() {
 	int jogador, computador;
 	char jogar_novamente;
@@ -126,6 +151,8 @@ int main() {
 	versao_02();
 	printf("\nVersC#o 03:\n");
 	versao_03();
+	printf("\nVersC#o 04:\n");
+	versao_04();
 	printf("\nVersC#o 05:\n");
 	versao_05();
 	return 0;
